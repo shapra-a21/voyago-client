@@ -41,6 +41,7 @@ const Login = () => {
         alert(result.message); // Menampilkan pesan dari server jika terjadi kesalahan
       } else {
         console.log(result.data);
+        console.log(result.token);
         localStorage.setItem('token' , result.token);
         dispatch({ type: 'LOGIN_SUCCESS', payload: result.data });
         navigate('/'); // Navigasi ke halaman utama setelah login sukses

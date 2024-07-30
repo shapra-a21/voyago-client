@@ -37,30 +37,29 @@ const Booking = ({ tour, avgRating }) => {
             userEmail: user.email,
         };
 
-        const token = localStorage.getItem('token');
-
-
         try {
-            const headers = {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}`,
-            };
             const res = await fetch(`${BASE_URL}/bookings`, {
                 method: 'POST',
-                headers:headers,
+                headers: {
+                    'content-type': 'application/json',
+                },
+                mode: 'cors',
+                credentials: 'include',
                 body: JSON.stringify(bookingData),
             });
-
-            console.log(res);
+            
+            console.log(res)
         
             if (!res.ok) {
                 throw new Error('Failed to create booking');
             }
         
             const result = await res.json();
+            console.log(result);
             alert(result.message);
             navigate("/thank-you");
         } catch (err) {
+            console.log(err);
             alert(err.message);
         }
         
