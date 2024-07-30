@@ -37,16 +37,17 @@ const Booking = ({ tour, avgRating }) => {
             userEmail: user.email,
         };
 
+        const token = localStorage.getItem('token');
+
+
         try {
-            var header =  {
-                'content-type': 'application/json',
-                "Authorization" : `Bearer ${localStorage.getItem('token')}`
+            const headers = {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`,
             };
-            console.log(header)
             const res = await fetch(`${BASE_URL}/bookings`, {
                 method: 'POST',
-                headers:header,
-                credentials: 'include',
+                headers:headers,
                 body: JSON.stringify(bookingData),
             });
 
